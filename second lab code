@@ -1,0 +1,39 @@
+#battleship
+board={"A": [".",".","."] , "B" :[".",".","."], "C": [".",".","."]}
+
+
+
+def print_board(board):
+    print("     A    B    C")
+    for i in range(len(board.values())):
+        print(str(i+1) + "    " + board["A"][i] + "    " +  board["B"][i] + "    " + board["C"][i])
+
+def play_battleship(board):
+    print("Welcomr to the Battleship!.")
+    column=(input("Player 1, Please select the coloumn for the battleship: "))
+    row = int(input ("Player 1, Please select the row for the battleship. "))
+    print_board(board)
+    guesses = 0
+    column_2 =input("Player 2, Select a column to check: ")
+    row_2 =int(input("Player 2, Select a row to check: "))
+    print_board(board)
+
+    while column_2 != column or row_2 != row:   
+        
+        board[column_2][row_2-1]="x"
+        print("Sorry, theres nothing there. \n")
+        print_board(board)
+        guesses += 1
+
+        column_2= input("Player 2, select a column to check: ")
+        row_2 = int(input("Player 2, select a row to check: "))
+        print_board(board)
+
+    board[column_2][row_2-1] ="!"
+    guesses += 1
+    print(" You won !")
+
+    print_board(board)
+    print("Score: ",guesses, " Guesses")
+
+play_battleship(board)
